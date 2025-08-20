@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .namevalidation,
+      .emailvalidation {
+        font-size: 8px;
+        color: red;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="" id="f" name="f">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" onblur=" FormValidation.namevalidation()" />
+        <div class="namevalidation">Please provide a valid name</div>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" />
+        <div class="emailvalidation">Please provide a valid Email</div>
+      </div>
+      <div>
+        <label for="city">City</label>
+        <select name="city" id="city">
+          <option value="Dhaka">Dhaka</option>
+          <option value="Khulna">Khulna</option>
+          <option value="Rajshahi">Rajshahi</option>
+          <option value="Barishal">Barishal</option>
+        </select>
+      </div>
+      <div class="checkbox">
+        <label for="">Gender</label>
+        <label for="Male">
+          Male
+          <input type="radio" id="Male" name="gender" value="Male" />
+        </label>
+        <label for="Female">
+          Female
+          <input type="radio" id="Female" name="gender" value="Female" />
+        </label>
+      </div>
+
+      <div class="checkbox">
+        <label for="Bangla">
+          Bangla
+          <input type="checkbox" id="Bangla" name="subject" value="Bangla" />
+        </label>
+        <label for="English">
+          English
+          <input type="checkbox" id="English" name="subject" value="English" />
+        </label>
+        <label for="Math">
+          Math
+          <input type="checkbox" id="Math" name="subject" value="Math" />
+        </label>
+        <label for="ICT">
+          ICT
+          <input type="checkbox" id="ICT" name="subject" value="ICT" />
+        </label>
+      </div>
+      <div>
+        <label for="comment">Comment</label>
+        <textarea id="comment" name="comment"></textarea>
+      </div>
+      <div>
+        <input type="submit" />
+      </div>
+    </form>
+
+      <script src="formValidation.js"></script>
+
+    <script>
+      
+        FormValidation.formSubmit();
+        
+        FormValidation.emailValidation();
+       
+
+
+      
+
+    </script>
+  </body>
+</html>

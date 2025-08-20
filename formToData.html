@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+            body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    #form {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #555;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border 0.3s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* Radio & Checkbox */
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 6px;
+      accent-color: #007bff; /* Modern browsers */
+    }
+
+    .nameValidation,
+    .emailvalidation {
+      font-size: 13px;
+      color: red;
+      display: none;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background: #0056b3;
+    }
+        #form{
+            font-size: larger;
+            font-weight: 700;
+            font-family: 
+        }
+
+        .emailvalidation,
+        .nameValidation{
+                font-size: 15px;
+                color: red;
+                display: none;
+        }
+    </style>
+</head>
+<body>
+    <form action="" id="form">
+    <h1>Form</h1>
+
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" required onblur="nameValidation()"> 
+      <div class="nameValidation">Please provide a valid name</div>
+    </div>
+
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+      <div class="emailvalidation">Please provide a valid Email</div>
+    </div>
+
+    <div>
+      <label for="number">Number:</label>
+      <input type="number" id="number">
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password">
+    </div>
+
+    <div>
+      <label>Gender:</label>
+      <label><input type="radio" name="gender" value="Male"> Male</label>
+      <label><input type="radio" name="gender" value="Female"> Female</label>
+    </div>
+
+    <div>
+      <label for="city">City:</label>
+      <select name="city" id="city">
+        <option value="Dhaka">Dhaka</option>
+        <option value="Khulna">Khulna</option>
+        <option value="Rajshahi">Rajshahi</option>
+        <option value="Barishal">Barishal</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Subject:</label>
+      <label><input type="checkbox" name="subject" value="Bangla"> Bangla</label>
+      <label><input type="checkbox" name="subject" value="English"> English</label>
+      <label><input type="checkbox" name="subject" value="Math"> Math</label>
+      <label><input type="checkbox" name="subject" value="Economics"> Economics</label>
+    </div>
+
+    <div>
+      <label for="comment">Comment</label>
+      <textarea id="comment" name="comment"></textarea>
+    </div>
+
+    <div>
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+    <script>
+        let form=document.getElementById("form");
+
+        form.addEventListener("submit", function(event){
+            event.preventDefault();
+            let name=document.getElementById("name").value
+            let email=document.getElementById("email").value
+            let password=document.getElementById("password").value
+            let city=document.getElementById("city").value
+            let comment=document.getElementById("comment").value
+            let number=Number(document.getElementById("number").value);
+
+            let selectedGender="";
+            let selectedSubject=[];
+            let gender=document.getElementsByName("gender")
+            let subject=document.getElementsByName("subject")
+
+            Array.from(gender).forEach((f)=>{
+                if(f.checked){
+                    selectedGender+=f.value
+                }
+            })
+            Array.from(subject).forEach((s)=>{
+                if(s.checked){
+                    selectedSubject+=s.value+" ";
+                }
+            })
+            // document.write(`<p>Gender:${selectedGender}</p>`)
+
+            let w= open("","_blank","width=700 , height=500");
+            w.document.write(`<h1>Name:${name}</h1>`)
+            w.document.write(`<h2>Email:${email}</h2>`)
+            w.document.write(`<h2>Number:${number}</h2>`)
+            w.document.write(`<h2>Password:${password}</h2>`)
+            w.document.write(`<h2>City:${city}</h2>`)
+            w.document.write(`<h2>Comment:${comment}</h2>`)
+            w.document.write(`<h2>Subject:${selectedSubject}</h2>`)
+            w.document.write(`<h2>Gender:${selectedGender}</h2>`)
+            w.document.write(`<button onclick="self.close()">Close</button>`)
+            w.document.write(`<button onclick="print()">Print</button>`)
+
+        });
+
+        function nameValidation() {
+            let name= document.getElementById("name").value;
+            let pattern=/^[a-zA-Z ]{4,}$/;
+            let nametest=pattern.test(name);
+            if (nametest) {
+               document.getElementById("name").style.border="3px dotted green"
+               document.getElementById("name").style.background="yellow"
+                document.getElementsByClassName("nameValidation")[0].style.display="none"
+            } else{
+                document.getElementsByClassName("nameValidation")[0].style.display="block" 
+                document.getElementById("name").style.border="3px dotted red"
+            }
+            
+        }
+
+        function validationOfEmail() {
+            let mail=document.getElementById("email");
+            mail.addEventListener("blur",function(event){
+            event.preventDefault();
+
+            let emailPattern=/^[a-zA-Z0-9]{4,}[@][a-zA-Z]{3,}[.][a-zA-Z]{2,}$/;
+
+            let emailTest=emailPattern.test(mail.value)
+
+             if (emailTest) {
+                document.getElementById("email").style.border="3px dotted green"
+                document.getElementById("email").style.borderRadius="30px"
+               document.getElementById("email").style.background="yellow"
+             }else{
+                 document.getElementsByClassName("emailvalidation")[0].style.display="block"
+             }
+
+        })
+        }
+        validationOfEmail()
+
+
+
+
+    </script>
+</body>
+</html>
